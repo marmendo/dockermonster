@@ -23,7 +23,12 @@ Probably you will need to execute the mysql command and then run:
   GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.%' WITH GRANT OPTION;
   GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.%' WITH GRANT OPTION;
 
-
 *STEP 2 - Create OSE Project*
 
-- 
+- Create a new app
+oc new-app git://github.com/marmendo/dockermonster
+After some seconds it will launch a builder
+
+Note: If something goes wrong you can delete dockermonster using:
+
+
