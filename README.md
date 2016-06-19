@@ -13,8 +13,11 @@ Be careful: The database configuration is hardcoded in (ticket-monster.war)/WEB-
 - Deploy it in a local JBoss EAP 6.4 instance
 - Test that it works correctly
 
-Notes: If you experience problems with MariaDB access permission take a look at:
+Notes:
+
+If you experience problems with MariaDB access permission take a look at:
   https://mariadb.com/kb/en/mariadb/configuring-mariadb-for-remote-client-access/
+  
 Probably you will need to execute the mysql command and then run:
 
   GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.%' WITH GRANT OPTION;
