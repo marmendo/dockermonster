@@ -65,6 +65,7 @@ BY
         </security>
     </datasource>
 ```
+
 In order to configure the database driver in JBOSS-DIR/standalone/configuration/standalone.xml
 
 UNDER
@@ -81,11 +82,15 @@ INCLUDE the driver definition
                     <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
                 </driver>
  ```
-
+ 
 - Realize that we are using 192.168.124.1:3306 in order to make the database accessible from demobuilder VM
 - From the demo folder, compile and pack with: `$ mvn clean package`
 - Deploy in local JBoss EAP 6.4 dropping the generated war to JBOSS-DIR/standalone/deployments
 - Start JBOSS-DIR/bin/standalone.sh and test that it works correctly
+- Navigate to http://localhost:8080/ticket-monster
+
+Works!!  GREAT!!
+
 
 **STEP 2 - Create OSE Project**
 
