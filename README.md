@@ -95,6 +95,14 @@ Works!!  GREAT!!
 **STEP 2 - Create OSE Project**
 
 - Clone this repository or upload the Dockerfile and ticket-monster.war to your own git repository named dockermonster
+```
+    #from the tutorial root
+    git clone http://github.com/YOUR_USER/dockermonster
+    cd dockermonster
+    cp ../demo/target/*.war .
+    git commit --allow-empty-message ticket-monster.war 
+    git push
+```
 - Enter the demobuilder VM, open a terminal an run `oc login...`
 - Create a new app running the following command
 
