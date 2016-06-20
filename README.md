@@ -25,11 +25,14 @@ Probably you will need to execute the mysql command and then run:
 
 *STEP 2 - Create OSE Project*
 
-- Create a new app
-oc new-app git://github.com/marmendo/dockermonster
-After some seconds it will launch a builder
+- Create a new app running the following command
+
+   $ oc new-app git://github.com/marmendo/dockermonster
+
+   After some seconds it will launch a builder
 
 Note: If something goes wrong you can delete dockermonster using:
-oc delete all --all -n dockermonster
+
+    $ oc delete all --all -n dockermonster
 
 
