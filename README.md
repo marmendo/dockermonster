@@ -32,9 +32,10 @@ Probably you will need to execute the mysql command and then run:
    After some seconds it will launch a builder
    
    Once the builder ends you must:
-   * Add a route with path "ticket-monster" from the Openshift Web Console
-   - I didn't find a way to do this from oc
-   - I didn't find the way to publish jolokia (8778) service.
+   - Add a route with path "ticket-monster" from the Openshift Web Console
+   - TODO
+       - I didn't find a way to do this from the command line
+       - I didn't find the way to publish jolokia (8778) service.
    
 
 Note: If something goes wrong you can delete dockermonster using:
