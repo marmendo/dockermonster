@@ -35,9 +35,16 @@ Probably you will need to execute the mysql command and then run:
    - Add a route with path "ticket-monster" from the Openshift Web Console
    - TODO
        - I didn't find a way to do this from the command line
-       - I didn't find the way to publish jolokia (8778) service.
-   
-
+       - Find the way to publish jolokia (8778) service (it works ok in demobuilder monster app)
+       ```
+           bin/standalone.conf:# Install the Jolokia agent      
+           bin/standalone.conf:JAVA_OPTS="$JAVA_OPTS -Xbootclasspath/p:${JBOSS_MODULES_JAR}
+           :${JBOSS_LOGMANAGER_JAR}:${JBOSS_LOGMANAGER_EXT_JAR} -Djava.util.logging.manager
+           =org.jboss.logmanager.LogManager -javaagent:$JBOSS_HOME/jolokia.jar=port=8778,pr
+           otocol=https,caCert=/var/run/secrets/kubernetes.io/serviceaccount/ca.crt,clientP
+           rincipal=cn=system:master-proxy,useSslClientAuthentication=true,extraClientCheck
+           =true,host=0.0.0.0,discoveryEnabled=false" 
+        ```
 Note: If something goes wrong you can delete dockermonster using:
 
 `$ oc delete all --all -n dockermonster`
