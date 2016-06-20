@@ -1,5 +1,5 @@
 FROM registry.access.redhat.com/jboss-eap-6/eap64-openshift:latest
-EXPOSE 8080 8888
+EXPOSE 8080 8888 8778
 USER 185
 #ADD standalone.xml /opt/eap/standalone/configuration/standalone-openshift.xml
 #COPY mysql.tar /opt/eap/modules/system/layers/base/com/mysql.tar
