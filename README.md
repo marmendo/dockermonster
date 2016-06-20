@@ -2,15 +2,23 @@
 This a test for docker deployment on OpenShift running the monster demo app against a local (not OSE) mysql database
 The idea is to use it in combination with the AllInOne demobuilder environment using a docker strategy for build.
 
-This is just to show how an application which is running locally can be deployed in OpenShift without modifications.
+This is just to show how a legacy application of medium complexity could be deployed in OpenShift with few or no  modifications using docker builder strategy as a first approach.
 
 Warning!! : The database configuration is hardcoded in (ticket-monster.war)/WEB-INF/ticket-monster-ds.xml
+
+**STEP 0 - Prepare Ticket Monster**
+
+- Download JBoss EAP 6.4 here: http://developers.redhat.com/products/eap/download/ (under **View Older Downloads ▾**)
+- Configure JBoss and the maven repositories (you can download the repos to your local system)
+- Download the application here: http://developers.redhat.com/ticket-monster/
+- Install mariadb or mysql locally
+- Create a database (schema) named ticketmonster
 
 **STEP 1 - Local Test**
 
 - Take a look to the ticket-monster-ds.xml
 - Create a mysql database on the local host as configured in ticket-monster-ds.xml
-- Deploy it in a local JBoss EAP 6.4 instance
+- Deploy it in a local JBoss EAP 6.4 Standalone instance by dropping the generated war in JBOSS-DIR/standalone/deployments
 - Test that it works correctly
 
 Notes:
