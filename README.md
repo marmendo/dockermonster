@@ -6,7 +6,7 @@ This is just to show how an application which is running locally can be deployed
 
 Be careful: The database configuration is hardcoded in (ticket-monster.war)/WEB-INF/ticket-monster-ds.xml
 
-*STEP 1 - Local Test*
+**STEP 1 - Local Test**
 
 - Take a look to the ticket-monster-ds.xml
 - Create a mysql database on the local host as configured in ticket-monster-ds.xml
@@ -19,20 +19,20 @@ If you experience problems with MariaDB access permission take a look at:
   https://mariadb.com/kb/en/mariadb/configuring-mariadb-for-remote-client-access/
   
 Probably you will need to execute the mysql command and then run:
-
+```
   GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.%' WITH GRANT OPTION;
   GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.%' WITH GRANT OPTION;
-
-*STEP 2 - Create OSE Project*
+```
+**STEP 2 - Create OSE Project**
 
 - Create a new app running the following command
 
-   $ oc new-app git://github.com/marmendo/dockermonster
+   `$ oc new-app git://github.com/marmendo/dockermonster`
 
    After some seconds it will launch a builder
 
 Note: If something goes wrong you can delete dockermonster using:
 
-    $ oc delete all --all -n dockermonster
+`$ oc delete all --all -n dockermonster`
 
 
