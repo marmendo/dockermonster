@@ -85,7 +85,7 @@ INCLUDE the driver definition
  
 - Realize that we are using 192.168.124.1:3306 in order to make the database accessible from demobuilder VM
 - From the demo folder, compile and pack with: `$ mvn clean package`
-- Deploy in local JBoss EAP 6.4 dropping the generated war to JBOSS-DIR/standalone/deployments
+- Deploy to local JBoss EAP 6.4 dropping the generated war to JBOSS-DIR/standalone/deployments
 - Start JBOSS-DIR/bin/standalone.sh and test that it works correctly
 - Navigate to http://localhost:8080/ticket-monster
 
@@ -94,6 +94,7 @@ Works!!  GREAT!!
 
 **STEP 2 - Create OSE Project**
 
+- Enter the demobuilder VM, open a terminal an run `oc login...`
 - Create a new app running the following command
 
    `$ oc new-app git://github.com/marmendo/dockermonster`
@@ -102,9 +103,12 @@ Works!!  GREAT!!
    Once the builder finished you must create the route
 
    `$ oc expose service/dockermonster -l name=dockermonster`
+   
+   From the OpenShift console go to overview and test the application
+   
+Works!!  GREAT!!
+Now this is time to take a look to the Dockerfile and realize how easy it can be to deploy your apps on OSE3
 
-   Once the builder ends you must:
-   - Add a route with path "ticket-monster" from the Openshift Web Console
    - TODO
        - I looks like this is not possible to create a route with path (app context) on OSE 3.1.1
           Probably could be possible using a json or yaml file, but I couldn't find a valid example
