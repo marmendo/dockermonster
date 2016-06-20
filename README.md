@@ -94,6 +94,7 @@ Works!!  GREAT!!
 
 **STEP 2 - Create OSE Project**
 
+- Clone this repository or upload the Dockerfile and 
 - Enter the demobuilder VM, open a terminal an run `oc login...`
 - Create a new app running the following command
 
@@ -107,6 +108,7 @@ Works!!  GREAT!!
    From the OpenShift console go to overview and test the application
    
 Works!!  GREAT!!
+
 Now this is time to take a look to the Dockerfile and realize how easy it can be to deploy your apps on OSE3
 
    - TODO
