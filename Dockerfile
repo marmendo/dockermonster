@@ -6,4 +6,4 @@ USER 185
 #RUN cd /opt/eap/modules/system/layers/base/com && \
 #tar xvf mysql.tar && \
 #rm mysql.tar
-COPY ticket-monster.war /opt/eap/standalone/deployments/
+COPY ticket-monster.war /opt/eap/standalone/deployments/ROOT.war
