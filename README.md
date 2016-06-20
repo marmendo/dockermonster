@@ -1,6 +1,6 @@
 # dockermonster
-This a test for docker deployment on OpenShift running the monster demo app against a local (not ose) mysql database
-The idea is to use it in combination with the AllInOne demobuilder environment.
+This a test for docker deployment on OpenShift running the monster demo app against a local (not OSE) mysql database
+The idea is to use it in combination with the AllInOne demobuilder environment using a docker strategy for build.
 
 This is just to show how an application which is running locally can be deployed in OpenShift without modifications.
 
