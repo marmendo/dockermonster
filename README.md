@@ -6,7 +6,7 @@ This is just to show how a legacy application of medium complexity could be depl
 
 Warning!! : The database configuration is hardcoded in (ticket-monster.war)/WEB-INF/ticket-monster-ds.xml
 
-**STEP 0 - Prepare Environement**
+**STEP 0 - Prepare Environment**
 
 - Download JBoss EAP **6.4**: http://developers.redhat.com/products/eap/download/ (under **View Older Downloads ▾**)
 - Configure JBoss and the maven repositories (you can download the repos to your local system)
@@ -30,7 +30,7 @@ Probably you will need to execute the mysql command and then run:
 **STEP 1 - Prepare Ticketmonster**
 
 - Download the application here: http://developers.redhat.com/ticket-monster/
-- Update the datasource definition in: .../demo/src/main/webapp/WEB-INF
+- Update the datasource definition in: .../demo/src/main/webapp/WEB-INF/ticket-monster-ds.xml
 
 REPLACE
 ```
@@ -66,9 +66,9 @@ BY
     </datasource>
 ```
 - See that we are using 192.168.124.1:3306 in order to make the database accessible from demobuilder VM
-- Compile and pack with: $ mvn clean package
+- From the demo folder, compile and pack with: `$ mvn clean package`
 - Deploy in local JBoss EAP 6.4 by dropping the generated war in JBOSS-DIR/standalone/deployments
-- Start standalone.sh and test that it works correctly
+- Start JBOSS-DIR/bin/standalone.sh and test that it works correctly
 
 **STEP 2 - Create OSE Project**
 
