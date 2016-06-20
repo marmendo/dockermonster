@@ -10,7 +10,7 @@ Warning!! : The database configuration is hardcoded in (ticket-monster.war)/WEB-
 
 - Download JBoss EAP **6.4**: http://developers.redhat.com/products/eap/download/ (under **View Older Downloads ▾**)
 - Configure JBoss and the maven repositories (you can download the repos to your local system)
-- Add the mysql driver decompressing mysql.tar(in this repo) in .../jboss-eap-6.4/modules/system/layers/base/com
+- Add the mysql driver decompressing [mysql.tar](https://github.com/marmendo/dockermonster/blob/master/mysql.tar) in .../jboss-eap-6.4/modules/system/layers/base/com
 - Install mariadb or mysql locally. Provide permision to user root without password (see notes below)
 - Create a database (schema) named ticketmonster
 - Test you access to the schema (mysql workbench is here: https://dev.mysql.com/downloads/workbench)
@@ -65,9 +65,23 @@ BY
         </security>
     </datasource>
 ```
-- See that we are using 192.168.124.1:3306 in order to make the database accessible from demobuilder VM
+In order to configure the database driver in JBOSS-DIR/standalone/configuration/standalone.xml
+
+INCLUDE the driver definition under <subsystem...> <datasources> <drivers>
+
+    <subsystem xmlns="urn:jboss:domain:datasources:1.2"> 
+        <datasources>
+            <drivers>
+  ```
+                <driver name="mysql" module="com.mysql">
+                    <driver-class>com.mysql.jdbc.Driver</driver-class>
+                    <xa-datasource-class>com.mysql.jdbc.jdbc2.optional.MysqlXADataSource</xa-datasource-class>
+                </driver>
+ ```
+
+- Realize that we are using 192.168.124.1:3306 in order to make the database accessible from demobuilder VM
 - From the demo folder, compile and pack with: `$ mvn clean package`
-- Deploy in local JBoss EAP 6.4 by dropping the generated war in JBOSS-DIR/standalone/deployments
+- Deploy in local JBoss EAP 6.4 dropping the generated war to JBOSS-DIR/standalone/deployments
 - Start JBOSS-DIR/bin/standalone.sh and test that it works correctly
 
 **STEP 2 - Create OSE Project**
