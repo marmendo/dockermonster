@@ -4,7 +4,7 @@ The idea is to use it in combination with the AllInOne demobuilder environment u
 
 This is just to show how an application which is running locally can be deployed in OpenShift without modifications.
 
-Be careful: The database configuration is hardcoded in (ticket-monster.war)/WEB-INF/ticket-monster-ds.xml
+Warning!! : The database configuration is hardcoded in (ticket-monster.war)/WEB-INF/ticket-monster-ds.xml
 
 **STEP 1 - Local Test**
 
