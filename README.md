@@ -30,11 +30,20 @@ Probably you will need to execute the mysql command and then run:
    `$ oc new-app git://github.com/marmendo/dockermonster`
 
    After some seconds it will launch a builder
+   Once the builder finished you must create the route
+   
+   `$ oc expose service/dockermonster -l name=dockermonster
    
    Once the builder ends you must:
    - Add a route with path "ticket-monster" from the Openshift Web Console
    - TODO
        - I didn't find a way to do this from the command line
+       ```
+          OK. I looks like this is not possible to create a route with path on OSE 3.1.1
+          Probably could be possible using a json or yaml file, but didn't find a valid example
+          Copying the application as ROOT.war we can publish the route in /   Solved!!
+          
+          
        - Find the way to publish jolokia (8778) service (it works ok in demobuilder monster app)
        ```
            bin/standalone.conf:# Install the Jolokia agent      
