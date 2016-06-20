@@ -46,7 +46,7 @@ REPLACE
 ```
 BY
 ```
-    <datasource jndi-name="java:jboss/datasources/TicketMonsterMySQLDS"
+    <datasource jndi-name="java:jboss/datasources/ticket-monsterDS"
         pool-name="MySQLDS" enabled="true">
         <connection-url>jdbc:mysql://192.168.124.1:3306/ticketmonster</connection-url>
         <driver>mysql</driver>
@@ -71,7 +71,7 @@ UNDER
 ```
        <subsystem xmlns="urn:jboss:domain:datasources:1.2"> 
           <datasources>
-              <drivers>`
+              <drivers>
 ```
 INCLUDE the driver definition
 
