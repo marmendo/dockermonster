@@ -67,11 +67,14 @@ BY
 ```
 In order to configure the database driver in JBOSS-DIR/standalone/configuration/standalone.xml
 
-INCLUDE the driver definition under <subsystem...> <datasources> <drivers>
+UNDER
+```
+       <subsystem xmlns="urn:jboss:domain:datasources:1.2"> 
+          <datasources>
+              <drivers>`
+```
+INCLUDE the driver definition
 
-    <subsystem xmlns="urn:jboss:domain:datasources:1.2"> 
-        <datasources>
-            <drivers>
   ```
                 <driver name="mysql" module="com.mysql">
                     <driver-class>com.mysql.jdbc.Driver</driver-class>
