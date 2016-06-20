@@ -6,20 +6,14 @@ This is just to show how a legacy application of medium complexity could be depl
 
 Warning!! : The database configuration is hardcoded in (ticket-monster.war)/WEB-INF/ticket-monster-ds.xml
 
-**STEP 0 - Prepare Ticket Monster**
+**STEP 0 - Prepare Environement**
 
-- Download JBoss EAP 6.4 here: http://developers.redhat.com/products/eap/download/ (under **View Older Downloads ▾**)
+- Download JBoss EAP **6.4**: http://developers.redhat.com/products/eap/download/ (under **View Older Downloads ▾**)
 - Configure JBoss and the maven repositories (you can download the repos to your local system)
-- Download the application here: http://developers.redhat.com/ticket-monster/
-- Install mariadb or mysql locally
+- Add the mysql driver decompressing mysql.tar(in this repo) in .../jboss-eap-6.4/modules/system/layers/base/com
+- Install mariadb or mysql locally. Provide permision to user root without password (see notes below)
 - Create a database (schema) named ticketmonster
-
-**STEP 1 - Local Test**
-
-- Take a look to the ticket-monster-ds.xml
-- Create a mysql database on the local host as configured in ticket-monster-ds.xml
-- Deploy it in a local JBoss EAP 6.4 Standalone instance by dropping the generated war in JBOSS-DIR/standalone/deployments
-- Test that it works correctly
+- Test you access to the schema (mysql workbench is here: https://dev.mysql.com/downloads/workbench)
 
 Notes:
 
@@ -29,8 +23,53 @@ If you experience problems with MariaDB access permission take a look at:
 Probably you will need to execute the mysql command and then run:
 ```
   GRANT ALL PRIVILEGES ON *.* TO 'root'@'192.168.%' WITH GRANT OPTION;
+  GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost%' WITH GRANT OPTION;
   GRANT ALL PRIVILEGES ON *.* TO 'root'@'172.17.%' WITH GRANT OPTION;
 ```
+
+**STEP 1 - Prepare Ticketmonster**
+
+- Download the application here: http://developers.redhat.com/ticket-monster/
+- Update the datasource definition in: .../demo/src/main/webapp/WEB-INF
+
+REPLACE
+```
+    <datasource jndi-name="java:jboss/datasources/ticket-monsterDS"
+        pool-name="ticket-monster" enabled="true" use-java-context="true">
+        <connection-url>jdbc:h2:mem:ticket-monster;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=-1</connection-url>
+        <driver>h2</driver>
+        <security>
+            <user-name>sa</user-name>
+            <password>sa</password>
+        </security>
+    </datasource>
+```
+BY
+```
+    <datasource jndi-name="java:jboss/datasources/TicketMonsterMySQLDS"
+        pool-name="MySQLDS" enabled="true">
+        <connection-url>jdbc:mysql://192.168.124.1:3306/ticketmonster</connection-url>
+        <driver>mysql</driver>
+        <pool>
+            <min-pool-size>1</min-pool-size>
+            <max-pool-size>10</max-pool-size>
+            <prefill>true</prefill>
+        </pool>
+        <statement>
+            <prepared-statement-cache-size>32</prepared-statement-cache-size>
+            <share-prepared-statements>true</share-prepared-statements>
+        </statement>
+        <security>
+            <user-name>root</user-name>
+            <password></password>
+        </security>
+    </datasource>
+```
+- See that we are using 192.168.124.1:3306 in order to make the database accessible from demobuilder VM
+- Compile and pack with: $ mvn clean package
+- Deploy in local JBoss EAP 6.4 by dropping the generated war in JBOSS-DIR/standalone/deployments
+- Start standalone.sh and test that it works correctly
+
 **STEP 2 - Create OSE Project**
 
 - Create a new app running the following command
