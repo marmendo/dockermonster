@@ -1,0 +1,6 @@
+#from the tutorial root
+git clone http://github.com/marmendo/dockermonster
+cd dockermonster
+cp ../demo/target/*.war .
+git commit --allow-empty-message ticket-monster.war 
+git push
