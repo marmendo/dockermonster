@@ -94,14 +94,16 @@ Works!!  GREAT!!
 
 **STEP 2 - Create OSE Project**
 
-- Clone this repository or upload the Dockerfile and 
+- Clone this repository or upload the Dockerfile and ticket-monster.war to your own git repository named dockermonster
 - Enter the demobuilder VM, open a terminal an run `oc login...`
 - Create a new app running the following command
 
-   `$ oc new-app git://github.com/marmendo/dockermonster`
+   `$ oc new-app git://github.com/marmendo/dockermonster`  (Or use your own repository)
 
+   Open the the project on the OpenShift web console
    After some seconds it will launch a builder
-   Once the builder finished you must create the route
+   Once the builder finished you must create the route from the command line
+   (you can do this from the web console too)
 
    `$ oc expose service/dockermonster -l name=dockermonster`
    
@@ -111,9 +113,14 @@ Works!!  GREAT!!
 
 Now this is time to take a look to the Dockerfile and realize how easy it can be to deploy your apps on OSE3
 
-   - TODO
-       - I looks like this is not possible to create a route with path (app context) on OSE 3.1.1
-          Probably could be possible using a json or yaml file, but I couldn't find a valid example
+Note: If something goes wrong you can delete dockermonster using:
+
+`$ oc delete all --all -n dockermonster`
+
+
+**TODO**
+       - I looks like this is not possible to create a route with path (app context) different 
+          than / using the command line on OSE 3.1.1. It looks like OSE 3.3 will allow it.
           Copying the application as ROOT.war made the trick!!   Solved!!
 
        - Still looking for a way to publish jolokia (8778) service (it works ok in demobuilder monster app) Why??
@@ -126,8 +133,4 @@ Now this is time to take a look to the Dockerfile and realize how easy it can be
            rincipal=cn=system:master-proxy,useSslClientAuthentication=true,extraClientCheck
            =true,host=0.0.0.0,discoveryEnabled=false" 
         ```
-Note: If something goes wrong you can delete dockermonster using:
-
-`$ oc delete all --all -n dockermonster`
-
 
